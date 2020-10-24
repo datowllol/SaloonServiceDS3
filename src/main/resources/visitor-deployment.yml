@@ -20,7 +20,7 @@ spec:
               name: pub-SaloonService
           env:
             - name: POSTGRES_ENDPOINT
-              value: "jdbc:postgresql://192.168.0.101:5432/"
+              value: "jdbc:postgresql://192.168.0.101:5433/"
             - name: POSTGRES_PASSWORD
               value: "1322"
             - name: POSTGRES_USERNAME
