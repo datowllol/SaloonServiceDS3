@@ -23,7 +23,8 @@ public final class SaloonService implements InterfaceSaloonService {
 
     public Saloon addSaloon(Saloon saloon) {
         FreeTable table = new FreeTable();
-        table.setSaloon(saloon);
+        table.setSaloonId(saloon.getTableId());
+        saloon.setFreeTableId(table.getFreeTableId());
         Saloon savedSaloon = saloonRepository.save(saloon);
         table = tableLeavingService.addTable(table);
         return getById(savedSaloon.getTableId());
@@ -50,7 +51,7 @@ public final class SaloonService implements InterfaceSaloonService {
 
     public void deleteSaloonById(UUID id) {
         Saloon saloon = saloonRepository.findById(id).get();
-        tableLeavingService.deleteById(saloon.getFreeTable().getFreeTableId());
+        tableLeavingService.deleteById(saloon.getFreeTableId());
         saloonRepository.deleteById(id);
     }
 }

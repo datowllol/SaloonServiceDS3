@@ -1,13 +1,13 @@
-package com.example.hall;
+package com.saloon;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class HallApplication {
+public class SaloonApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(HallApplication.class, args);
+        SpringApplication.run(SaloonApplication.class, args);
     }
 
 }

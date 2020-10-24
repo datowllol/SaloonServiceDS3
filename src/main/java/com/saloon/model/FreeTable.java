@@ -23,6 +23,4 @@ public final class FreeTable {
         freeTableId = UUID.randomUUID();
     }
 
-    public void setSaloon(Saloon saloon) {
-    }
 }
