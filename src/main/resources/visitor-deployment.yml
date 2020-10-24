@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pub-SaloonService
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pub-SaloonService
+  template:
+    metadata:
+      labels:
+        app: pub-SaloonService
+    spec:
+      containers:
+        - image: datowl/Saloonservice
+          name: pub-SaloonService
+          ports:
+            - containerPort: 8084
+              name: pub-SaloonService
+          env:
+            - name: POSTGRES_ENDPOINT
+              value: "jdbc:postgresql://192.168.0.101:5432/"
+            - name: POSTGRES_PASSWORD
+              value: "1322"
+            - name: POSTGRES_USERNAME
+              value: "postgres"
