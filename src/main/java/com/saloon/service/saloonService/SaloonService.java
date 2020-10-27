@@ -1,6 +1,7 @@
 package com.saloon.service.saloonService;
 
 
+import com.saloon.dto.Visitors;
 import com.saloon.model.FreeTable;
 import com.saloon.model.Saloon;
 import com.saloon.repository.SaloonRepository;
@@ -39,14 +40,27 @@ public final class SaloonService implements InterfaceSaloonService {
         return saloon;
     }
 
-    public List<Saloon> getByPlaceNum(Integer placeNum) {
-        List<Saloon> enoughPlaceSaloon = new ArrayList<>();
+    public Saloon getByPlaceNum(Visitors visitorsDto) {
+        int placeNum = visitorsDto.getVisitorsNum();
+        List<Saloon> tempSaloon = new ArrayList<>();
         for (Saloon t :
                 saloonRepository.findAll()) {
             if (t.getPlaceNum() >= placeNum)
-                enoughPlaceSaloon.add(t);
+                tempSaloon.add(t);
         }
-        return enoughPlaceSaloon;
+        List<FreeTable> tables = tableLeavingService.getAll();
+        Saloon returnSaloon;
+        for (FreeTable t :
+                tables)
+            for (Saloon s :
+                    tempSaloon) {
+                if (t.getSaloon().getTableId() == s.getTableId()) {
+                    FreeTable table = t;
+                    tableLeavingService.deleteById(table.getFreeTableId());
+                     returnSaloon = getById(table.getSaloonId());
+                    return returnSaloon;
+                }
+        return returnSaloon;
     }
 
     public void deleteSaloonById(UUID id) {

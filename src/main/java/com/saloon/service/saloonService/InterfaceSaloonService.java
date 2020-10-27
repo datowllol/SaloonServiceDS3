@@ -2,6 +2,7 @@ package com.saloon.service.saloonService;
 
 
 
+import com.saloon.dto.Visitors;
 import com.saloon.model.Saloon;
 
 import java.util.List;
@@ -15,7 +16,7 @@ public interface InterfaceSaloonService {
 
     Saloon getById(UUID id);
 
-    List<Saloon> getByPlaceNum(Integer placeNum);
+    Saloon getByPlaceNum(Visitors visitorsDto);
 
     void deleteSaloonById(UUID id);
 }

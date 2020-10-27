@@ -19,6 +19,12 @@ public class TableLeavingService implements InterfaceTableLeavingService {
         return savedTable;
     }
 
+    public FreeTable setFree(FreeTable tableDto){
+        FreeTable table = new FreeTable();
+        table.setSaloonId(tableDto.getSaloonId());
+        table = tableRepository.save(table);
+        return table;
+    }
     public List<FreeTable> getAll() {
         return tableRepository.findAll();
     }
